@@ -7,17 +7,12 @@
 **/
 class rssPlugin implements pluginInterface {
 
-	var $rssConfig = array(
-		array('title'=> 'VG', 'url'=>'http://www.vg.no/rss/nyfront.php?frontId=1', 'pollInterval'=>15, 'channel'=>'#vikingbot'),
-		array('title'=> 'BBC News', 'url'=>'http://feeds.bbci.co.uk/news/rss.xml', 'pollInterval'=>15, 'channel'=>'#vikingbot'),
-		array('title'=> 'CNN', 'url'=>'http://rss.cnn.com/rss/edition.rss', 'pollInterval'=>15, 'channel'=>'#vikingbot'),
-	);
-
 	var $lastCleanTime;
 	var $socket;
 	var $started;
 
         function init($config, $socket) {
+		$rssConfig = $config['plugins']['rssReader'];
 		$this->started = time();
 		$this->socket = $socket;
 		$this->controlFeedDB();
