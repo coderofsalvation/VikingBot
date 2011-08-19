@@ -10,9 +10,11 @@ class rssPlugin implements pluginInterface {
 	var $lastCleanTime;
 	var $socket;
 	var $started;
+	var $todo;
 
         function init($config, $socket) {
-		$rssConfig = $config['plugins']['rssReader'];
+		$this->todo = array();
+		$this->rssConfig = $config['plugins']['rssReader'];
 		$this->started = time();
 		$this->socket = $socket;
 		$this->controlFeedDB();
@@ -31,6 +33,12 @@ class rssPlugin implements pluginInterface {
 		//Start pollings feeds that should be updated after 20 seconds to get the bot in to any channels etc
 		if(($this->started + 30) < time()) {
 			$this->parseFeeds();
+		}
+
+		//If we got todo, output one row from it
+		if(count($this->todo) > 0) {
+			$row = array_pop($this->todo);
+	                sendMessage($this->socket, $row[0], $row[1]);
 		}
 
         }
@@ -84,11 +92,10 @@ class rssPlugin implements pluginInterface {
 			}
 		}
 		$newRow = $feedTitle."\t{$feedChannel}\t{$elementTitle}\t{$elementLink}\t{$hash}\n";
-		$h = fopen("db/rssPlugin.db", 'r+');
+		$h = fopen("db/rssPlugin.db", 'a');
 		fwrite($h, $newRow);
 		fclose($h);
-		sendMessage($this->socket, $feedChannel, "[{$feedTitle}] {$elementTitle} - {$elementLink}");			
-		usleep(700000); //Dont flood
+		$this->todo[]= array($feedChannel, "[{$feedTitle}] {$elementTitle} - {$elementLink}");
 	}
 
 	/**
@@ -96,18 +103,21 @@ class rssPlugin implements pluginInterface {
 	 */
 	function cleanFeedDB() {
 		$data = file("db/rssPlugin.db");
-		$newData = array();
-		$counter = 0;
-		foreach($data as $d) {
-			$newData[] = $d;
-			if($counter == 1000) {
-				break;
+		$data = array_reverse($data);
+		if(count($data) > 1000) {
+			$newData = array();
+			$counter = 0;
+			foreach($data as $d) {
+				$newData[] = $d;
+				if($counter == 1000) {
+					break;
+				}
 			}
+			$h = fopen("db/rssPlugin.db", 'w+') or die("db folder is not writable!");
+			foreach($newData as $d) {
+				fwrite($h, $d."\n");
+			}
+			fclose($h);
 		}
-		$h = fopen("rssPlugin.db", 'w+') or die("db folder is not writable!");
-		foreach($newData as $d) {
-			fwrite($h, $d."\n");
-		}
-		fclose($h);
 	}
 }
