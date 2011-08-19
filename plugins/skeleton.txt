@@ -1,0 +1,20 @@
+<?php
+
+class examplePlugin extends pluginCore implements pluginInterface {
+
+        function init($socket) {
+
+        }
+
+        function tick() {
+
+        }
+
+        function onMessage($msg) {
+
+        }
+
+        function destroy() {
+
+        }
+}
