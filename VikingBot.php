@@ -2,6 +2,7 @@
 
 set_time_limit(0);
 error_reporting(E_ALL);
+date_default_timezone_set('GMT');
 
 if(!is_file("config.php")) {
 	die("You have not created a config.php yet.\n");
