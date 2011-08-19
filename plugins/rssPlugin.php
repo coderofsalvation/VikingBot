@@ -72,8 +72,19 @@ class rssPlugin implements pluginInterface {
 
 				$content = file_get_contents($feed['url']);
 				$x = new SimpleXmlElement($content);
-				foreach($x->channel->item as $entry) { 
-					$this->saveEntry($feed['title'], $feed['channel'], $entry->title, $entry->link);
+				
+				//RSS feed format
+				if(isset($x->channel)) {
+					foreach($x->channel->item as $entry) { 
+						$this->saveEntry($feed['title'], $feed['channel'], $entry->title, $entry->link);
+					}
+				} else {
+					//Atom feed format
+					if(isset($x->entry)) {
+						foreach($x->entry as $entry) {
+							$this->saveEntry($feed['title'], $feed['channel'], $entry->title, $entry->link->attributes()->href);
+						}
+					}
 				}
 			}
 		}
