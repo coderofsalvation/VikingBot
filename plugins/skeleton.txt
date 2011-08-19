@@ -1,8 +1,8 @@
 <?php
 
-class examplePlugin extends pluginCore implements pluginInterface {
+class examplePlugin implements pluginInterface {
 
-        function init($socket) {
+        function init($config, $socket) {
 
         }
 
@@ -10,7 +10,7 @@ class examplePlugin extends pluginCore implements pluginInterface {
 
         }
 
-        function onMessage($msg) {
+        function onMessage($from, $channel, $msg) {
 
         }
 

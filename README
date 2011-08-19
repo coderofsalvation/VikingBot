@@ -3,3 +3,40 @@
 2) update config.php with correct settings
 3) run it, sh start.sh
 4) check log outout in logs/vikingbot.log
+
+========== SUPPORTED COMMANDS ==========
+The following commands are supported out of the box
+(aka they are not controlled via plugins):
+
+!quit [password]	-	Shuts down the bot
+!restart [password]	-	Restarts the bot
+
+The following commands are supported via the plugins that 
+is installed per default:
+
+!ping			-	The bot responds with a pong to say that it is still alive
+!uptime			-	The bot responds with the bots uptime
+
+========== INSTALLED PLUGINS ========== 
+The following plugins are installed per default:
+
+fileReaderPlugin:
+	- Outputs data from db/fileReaderOutput.db to channel specified in the plugin, 
+	useful for GIT/SVN commit hooks or anything other that should push data to a 
+	channel
+
+pingPlugin:
+	- Plugin that responds to a "!ping" with a "pong".
+
+uptimePlugin:
+	- Plugin that responds to a "!uptime" with the bots uptime
+
+rssPlugin:
+	- Plugin that pulls RSS feeds at specified intervals and outputs new 
+	  RSS elements to a specified channel. 
+
+
+
+========== BUGS/PROBLEMS? ==========
+Feel free to contact me via IRC on EfNet/Freenode/Undernet (Ueland)
+or via e-mail: tor.henning AT gmail.com.

@@ -9,7 +9,7 @@ class uptimePlugin implements pluginInterface {
 	var $socket;
 	var $startTime;
 
-        function init($socket) {
+        function init($config, $socket) {
 		$this->startTime = new DateTime();
 		$this->socket = $socket;
 	}

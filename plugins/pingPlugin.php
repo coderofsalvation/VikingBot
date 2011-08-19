@@ -8,7 +8,7 @@ class pingPlugin implements pluginInterface {
 
 	var $socket;
 
-        function init($socket) {
+        function init($config, $socket) {
 		$this->socket = $socket;
 	}
 

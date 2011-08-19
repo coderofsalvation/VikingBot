@@ -21,5 +21,6 @@ function getNick($in) {
  * Write a message to channel/user
  */
 function sendMessage($socket, $channel, $msg) {
-	fwrite($socket, "PRIVMSG {$channel} :{$msg}\r\n");	
+	echo "<Bot to server> PRIVMSG {$channel} :{$msg}\n";
+	fwrite($socket, "PRIVMSG {$channel} :{$msg}\r\n");
 }

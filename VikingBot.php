@@ -39,7 +39,7 @@ class VikingBot {
 			}
 		}
 		foreach($this->plugins as $plugin) {
-			$plugin->init($this->socket);
+			$plugin->init($this->config, $this->socket);
 		}
 	}
 
@@ -146,7 +146,7 @@ class VikingBot {
 	}
 	
 	function prepareShutdown() {
-                $this->sendData('QUIT', 'VikingBot@https://github.com/Ueland/VikingBot');
+                $this->sendData('QUIT :', 'VikingBot - https://github.com/Ueland/VikingBot');
                 foreach($this->plugins as $plugin) {
                         $plugin->destroy();
                 }

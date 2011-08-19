@@ -14,7 +14,7 @@ class fileReaderPlugin implements pluginInterface {
 	var $db = 'db/fileReaderOutput.db';
 	var $lastCheck;
 
-        function init($socket) {
+        function init($config, $socket) {
 		$this->socket = $socket;
 		$this->lastCheck = time();
 		if(!is_file($this->db)) {

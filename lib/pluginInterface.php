@@ -5,7 +5,7 @@ interface pluginInterface {
 	/**
 	Called when plugins are loaded
 	**/
-	function init($socket);
+	function init($config, $socket);
 
         /**
 	Called about twice per second or when there are
