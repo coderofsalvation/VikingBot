@@ -21,3 +21,8 @@ $config['plugins']['rssReader'] = array(
         array('title'=> 'BBC News',     'url'=>'http://feeds.bbci.co.uk/news/rss.xml',          'pollInterval'=>15,     'channel'=>'#vikingbot'),
         array('title'=> 'CNN',          'url'=>'http://rss.cnn.com/rss/edition.rss',            'pollInterval'=>15,     'channel'=>'#vikingbot'),
 );
+
+//File reader
+$config['plugins']['fileReader'] = array(
+        'channel'       => '#vikingbot',
+);

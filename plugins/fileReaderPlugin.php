@@ -10,11 +10,12 @@
 class fileReaderPlugin implements pluginInterface {
 
 	var $socket;
-	var $channel = '#vikingbot';
+	var $channel = '';
 	var $db = 'db/fileReaderOutput.db';
 	var $lastCheck;
 
         function init($config, $socket) {
+		$this->channel = $config['plugins']['fileReader']['channel'];
 		$this->socket = $socket;
 		$this->lastCheck = time();
 		if(!is_file($this->db)) {
