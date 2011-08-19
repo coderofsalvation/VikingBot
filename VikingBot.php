@@ -146,7 +146,7 @@ class VikingBot {
 	}
 	
 	function prepareShutdown() {
-                $this->sendData('QUIT', 'VikingBot - https://github.com/Ueland/VikingBot');
+                $this->sendData('QUIT', 'VikingBot@https://github.com/Ueland/VikingBot');
                 foreach($this->plugins as $plugin) {
                         $plugin->destroy();
                 }
