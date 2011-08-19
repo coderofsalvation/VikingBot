@@ -1,0 +1,5 @@
+========== INSTALLING ==========
+1) copy config.dist.php to config.php
+2) update config.php with correct settings
+3) run it, sh start.sh
+4) check log outout in logs/vikingbot.log
