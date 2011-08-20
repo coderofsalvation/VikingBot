@@ -2,6 +2,7 @@
 
 set_time_limit(0);
 error_reporting(E_ALL);
+ini_set('memory_limit', '128M');
 date_default_timezone_set('GMT');
 declare(ticks = 1);
 
