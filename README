@@ -16,6 +16,7 @@ is installed per default:
 
 !ping			-	The bot responds with a pong to say that it is still alive
 !uptime			-	The bot responds with the bots uptime
+!upgrade [password]	-	The bot will attempt to upgrade itself to the latest version via GIT pull
 
 ========== INSTALLED PLUGINS ========== 
 The following plugins are installed per default:
@@ -34,6 +35,9 @@ uptimePlugin:
 rssPlugin:
 	- Plugin that pulls RSS feeds at specified intervals and outputs new 
 	  RSS elements to a specified channel. 
+
+upgradePlugin:
+	- Plugin that upgrades the bot via git pull.
 
 
 

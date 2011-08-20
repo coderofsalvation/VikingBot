@@ -8,6 +8,16 @@ function stringEndsWith($whole, $end) {
 }
 
 /**
+ * Checks to see if a string starts with substring
+ */
+function stringStartsWith($whole, $end) {
+	if(substr($whole, 0, strlen($end)) == $end) {
+		return true;
+	}
+	return false;
+}
+
+/**
  * gets the nick name from a ident
  */
 function getNick($in) {
@@ -22,5 +32,13 @@ function getNick($in) {
  */
 function sendMessage($socket, $channel, $msg) {
 	echo "<Bot to server> PRIVMSG {$channel} :{$msg}\n";
-	fwrite($socket, "PRIVMSG {$channel} :{$msg}\r\n");
+	sendData($socket, "PRIVMSG {$channel} :{$msg}");
+}
+
+/**
+ * Sends data to server
+ */
+function sendData($socket, $msg) {
+	fwrite($socket, "{$msg}\r\n");
+	echo "<Bot to server> {$msg}\n";
 }

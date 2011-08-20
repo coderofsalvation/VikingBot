@@ -51,9 +51,9 @@ class VikingBot {
 	}
 
 	function login() {
-		$this->sendData('PASS', $this->config['pass']);
-		$this->sendData('NICK', $this->config['nick']);
-		$this->sendData('USER', $this->config['name']." 0 *: ".$this->config['name']);
+		sendData($this->socket, "PASS {$this->config['pass']}");
+		sendData($this->socket, "NICK {$this->config['nick']}");
+		sendData($this->socket, "USER {$this->config['name']} 0 *: {$this->config['name']}");
 	}
 
 	function main() {
@@ -79,18 +79,25 @@ class VikingBot {
 			echo "<Server to bot> ".$data;	
 			$bits = explode(' ', $data);
 			if($bits[0] == 'PING') {
-				$this->sendData('PONG', $bits[1]); //Ping? Pong!
+				sendData($this->socket, "PONG {$bits[1]}"); //Ping? Pong!
+			}
+
+			$from = getNick($bits[0]);
+			$chan = trim($bits[2]);
+
+			if($chan[0] != '#') {
+				$chan = $from;
 			}
 
 			if(isset($bits[3])) {
 				$cmd = trim($bits[3]);
 				switch($cmd) {
 					case ':!exit':
-						$this->shutdown($bits);
+						$this->shutdown($bits[4], $from, $chan);
 					break;
 
 					case ':!restart':
-						$this->restart($bits);
+						$this->restart($bits[4], $from, $chan);
 					break;
 				}
 			}
@@ -102,14 +109,6 @@ class VikingBot {
 					$msg .= ' '.$bits[$i];
 				}
 				$msg = trim($msg);
-
-				$from = getNick($bits[0]);
-				$chan = trim($bits[2]);
-
-				if($chan[0] != '#') {
-					$chan = $from;
-				}
-			
 				foreach($this->plugins as $plugin) {
 					$plugin->onMessage($from, $chan, $msg);	
 				}
@@ -120,58 +119,44 @@ class VikingBot {
 		$this->main();
 	}
 
-	function sendData($cmd, $msg = null) {
-		if($msg == null) {
-			fwrite($this->socket, $cmd."\r\n");
-			echo '<Bot to server> '.$cmd."\n";
-		} else {
-			fwrite($this->socket, $cmd.' '.$msg."\r\n");
-			echo '<Bot to server> '.$cmd.' '.$msg."\n";
-		}
-	}
-
 	function joinChannel($channel) {
 		echo "Joining channel {$channel}\n";
 		if(is_array($channel)) {
 			foreach($channel as $chan) {
-				$this->sendData('JOIN', $chan);
+				sendData($this->socket, "JOIN {$chan}");
 			}
 		} else {
-			$this->sendData('JOIN', $channel);
+			sendData($this->socket, "JOIN {$channel}");
 		}
 	}
 	
 
-	function restart($args) {
-		if(!$this->correctAdminPass($args[4])) {
-                        $this->privMsg(getNick($args[0]), "Wrong password");
+	function restart($pass, $from, $chan) {
+		if(!$this->correctAdminPass($pass)) {
+                        sendMessage($this->socket, $chan, "{$from}: Wrong password");
                         return false;
                 }
-		$this->privMsg(getNick($args[0]), "Restarting...");
+		sendMessage($this->socket, $chan, "{$from}: Restarting...");
 		$this->prepareShutdown();
 		die(exec('sh start.sh > /dev/null &'));
 	}
 	
 	function prepareShutdown() {
-                $this->sendData('QUIT :', 'VikingBot - https://github.com/Ueland/VikingBot');
+                sendData($this->socket, "QUIT :VikingBot - https://github.com/Ueland/VikingBot");
                 foreach($this->plugins as $plugin) {
                         $plugin->destroy();
                 }
 	}
 
-	function shutdown($args) {
+	function shutdown($pass, $from, $chan) {
 
-		if(!$this->correctAdminPass($args[4])) {
-			$this->privMsg(getNick($args[0]), "Wrong password");
+		if(!$this->correctAdminPass($pass)) {
+			sendMessage($this->socket, $chan, "{$from}: Wrong password");
 			return false;
 		}
-		$this->privMsg(getNick($args[0]), "Shutting down...");
+		sendMessage($this->socket, $chan, "{$from}: Shutting down...");
 		$this->prepareShutdown();
 		exit;
-	}
-
-	function privMsg($user, $msg) {
-		$this->sendData("PRIVMSG {$user} :".$msg);
 	}
 
 	function correctAdminPass($pass) {
@@ -188,8 +173,7 @@ class VikingBot {
 	}
 
 	function signalHandler($signal) {
-		print_r($signal);
-		$this->sendData('QUIT :', "Caught signal {$signal}, shutting down");
+		sendData($this->socket, "QUIT :Caught signal {$signal}, shutting down");
 		echo "Caught {$signal}, shutting down\n";
 		exit();
 	}
