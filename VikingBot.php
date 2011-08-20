@@ -3,6 +3,7 @@
 set_time_limit(0);
 error_reporting(E_ALL);
 date_default_timezone_set('GMT');
+declare(ticks = 1);
 
 if(!is_file("config.php")) {
 	die("You have not created a config.php yet.\n");
@@ -20,6 +21,11 @@ class VikingBot {
 	var $config;
 
 	function __construct($config) {
+
+		//Add signal handlers to shut down the bot correctly if its getting killed
+		pcntl_signal(SIGTERM, array($this, "signalHandler"));
+		pcntl_signal(SIGINT, array($this, "signalHandler"));
+
 		$this->config = $config;
 		$this->socket = stream_socket_client("".$config['server'].":".$config['port']) or die("Connection error!");
 		stream_set_blocking($this->socket, 0);
@@ -179,6 +185,13 @@ class VikingBot {
 		} else {
 			return true;
 		}
+	}
+
+	function signalHandler($signal) {
+		print_r($signal);
+		$this->sendData('QUIT :', "Caught signal {$signal}, shutting down");
+		echo "Caught {$signal}, shutting down\n";
+		exit();
 	}
 }
 
