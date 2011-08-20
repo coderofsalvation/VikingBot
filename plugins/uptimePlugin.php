@@ -30,11 +30,11 @@ class uptimePlugin implements pluginInterface {
 
 	function makeNiceTimeString($r) {
 		if($r->m > 0) {
-			return "{$r->m} months, {$r->d} days, {$r->h} hours, {$r->m} minutes & {$r->s} seconds";
+			return "{$r->m} months, {$r->d} days, {$r->h} hours, {$r->i} minutes & {$r->s} seconds";
 		} else if($r->d > 0) {
-			return "{$r->d} days, {$r->h} hours, {$r->m} minutes & {$r->s} seconds";
+			return "{$r->d} days, {$r->h} hours, {$r->i} minutes & {$r->s} seconds";
 		} else if($r->h > 0) {
-			return "{$r->h} hours, {$r->m} minutes & {$r->s} seconds";
+			return "{$r->h} hours, {$r->i} minutes & {$r->s} seconds";
 		} else if($r->i > 0) {
 			return "{$r->i} minutes & {$r->s} seconds";
 		} else {
