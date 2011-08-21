@@ -20,7 +20,6 @@ class pingPlugin implements pluginInterface {
 		if(stringEndsWith($msg, '!ping')) {
 			sendMessage($this->socket, $channel, $from.": Pong");
 		}
-		unset($msg);
 	}
 
         function destroy() {

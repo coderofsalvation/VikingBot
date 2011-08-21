@@ -19,6 +19,7 @@ class VikingBot {
 	var $startTime;
 	var $plugins;
 	var $config;
+	var $lastMemCheckTime;
 
 	function __construct($config) {
 
@@ -27,17 +28,20 @@ class VikingBot {
 		pcntl_signal(SIGINT, array($this, "signalHandler"));
 
 		$this->config = $config;
+		$this->lastMemCheckTime = 0;
+		$this->startTime = time();
+
 		ini_set("memory_limit", $this->config['memoryLimit']."M");
 		$this->socket = stream_socket_client("".$config['server'].":".$config['port']) or die("Connection error!");
 		stream_set_blocking($this->socket, 0);
 		stream_set_timeout($this->socket, 600);
 		$this->login();
 		$this->loadPlugins();
-		$this->startTime = time();
 		$this->main($config);
 	}
 
 	function loadPlugins() {
+		$this->plugins = array();
 		$handle = opendir('plugins');
 		while (false !== ($file = readdir($handle))) {
 			if(stringEndsWith($file, '.php')) {
@@ -69,6 +73,12 @@ class VikingBot {
                 	$this->inChannel = true;
 		}
 
+		//Run scheduled memory check
+		if(time() - 600 > $this->lastMemCheckTime) {
+			$this->lastMemCheckTime = time();
+			$this->doMemCheck();	
+		}
+		
 		//Tick plugins
 		foreach($this->plugins as $plugin) {
 			$plugin->tick();
@@ -86,7 +96,7 @@ class VikingBot {
 			$from = getNick($bits[0]);
 			$chan = trim($bits[2]);
 
-			if($chan[0] != '#') {
+			if(isset($chan[0]) && $chan[0] != '#') {
 				$chan = $from;
 			}
 
@@ -101,6 +111,7 @@ class VikingBot {
 						$this->restart($bits[4], $from, $chan);
 					break;
 				}
+				$cmd = null;
 			}
 
 			if($bits[1] == 'PRIVMSG') {
@@ -113,17 +124,30 @@ class VikingBot {
 				foreach($this->plugins as $plugin) {
 					$plugin->onMessage($from, $chan, $msg);	
 				}
+				$msg = null;
 			}
 
-			unset($bits);
-			unset($from);
-			unset($msg);
-			unset($bits);
+			$bits = null;
+			$from = null;
+			$chan = null;
+			$bits = null;
 		}
-		unset($data);
-		
+		$data = null;
 		//Move along
 		$this->main();
+	}
+
+	function doMemCheck() {
+
+		//Run garbage collection
+		gc_collect_cycles();
+		print_r($this->config);
+		$memFree = ((($this->config['memoryLimit']*1024)*1024) - memory_get_usage());
+		print_r($memFree);
+		if($memFree < (($this->config['memoryRestart']*1024)*1024)) {
+			$this->prepareShutdown("Out of memory, restarting...");
+			die(exec('sh start.sh > /dev/null &'));
+		}
 	}
 
 	function joinChannel($channel) {
@@ -144,12 +168,14 @@ class VikingBot {
                         return false;
                 }
 		sendMessage($this->socket, $chan, "{$from}: Restarting...");
-		$this->prepareShutdown();
-		die(exec('sh start.sh > /dev/null &'));
+		$this->prepareShutdown("");
 	}
 	
-	function prepareShutdown() {
-                sendData($this->socket, "QUIT :VikingBot - https://github.com/Ueland/VikingBot");
+	function prepareShutdown($msg) {
+		if(strlen($msg) == 0) {
+			$msg = "QUIT :VikingBot - https://github.com/Ueland/VikingBot";
+		}
+                sendData($this->socket, "QUIT :{$msg}");
                 foreach($this->plugins as $plugin) {
                         $plugin->destroy();
                 }
@@ -162,7 +188,7 @@ class VikingBot {
 			return false;
 		}
 		sendMessage($this->socket, $chan, "{$from}: Shutting down...");
-		$this->prepareShutdown();
+		$this->prepareShutdown("");
 		exit;
 	}
 

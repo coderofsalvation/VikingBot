@@ -14,6 +14,7 @@ The following commands are supported out of the box
 The following commands are supported via the plugins that 
 is installed per default:
 
+!memory			-	The bot responds with memory usage statistics
 !ping			-	The bot responds with a pong to say that it is still alive
 !uptime			-	The bot responds with the bots uptime
 !upgrade [password]	-	The bot will attempt to upgrade itself to the latest version via GIT pull
@@ -25,6 +26,9 @@ fileReaderPlugin:
 	- Outputs data from db/fileReaderOutput.db to channel specified in the plugin, 
 	useful for GIT/SVN commit hooks or anything other that should push data to a 
 	channel
+
+memoryPlugin
+	- Plugin that responds to a "!memory" with information about memory usage
 
 pingPlugin:
 	- Plugin that responds to a "!ping" with a "pong".

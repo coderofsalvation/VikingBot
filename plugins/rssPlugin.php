@@ -86,8 +86,8 @@ class rssPlugin implements pluginInterface {
 						}
 					}
 				}
-				unset($content);	
-				unset($x);
+				$content = null;	
+				$x = null;
 			}
 		}
 	}
@@ -104,13 +104,13 @@ class rssPlugin implements pluginInterface {
 				return false; //Already saved
 			}
 		}
-		unset($data);
+		$data = null;
 		$newRow = $feedTitle."\t{$feedChannel}\t{$elementTitle}\t{$elementLink}\t{$hash}\n";
 		$h = fopen("db/rssPlugin.db", 'a');
 		fwrite($h, $newRow);
 		fclose($h);
 		$this->todo[]= array($feedChannel, "[{$feedTitle}] {$elementTitle} - {$elementLink}");
-		unset($newRow);
+		$newRow = null;
 	}
 
 	/**
@@ -133,8 +133,8 @@ class rssPlugin implements pluginInterface {
 				fwrite($h, $d."\n");
 			}
 			fclose($h);
-			unset($newData);
+			$newData = null;
 		}
-		unset($data);
+		$data = null;
 	}
 }
