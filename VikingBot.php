@@ -91,8 +91,11 @@ class VikingBot {
 			$bits = explode(' ', $data);
 			if($bits[0] == 'PING') {
 				sendData($this->socket, "PONG {$bits[1]}"); //Ping? Pong!
+			} else if($bits[0] == 'ERROR') {
+				echo "Error from server, qutting.\n";
+				$this->prepareShutdown("");
+				exit;	
 			}
-
 			$from = getNick($bits[0]);
 			$chan = trim($bits[2]);
 
@@ -167,11 +170,12 @@ class VikingBot {
                 }
 		sendMessage($this->socket, $chan, "{$from}: Restarting...");
 		$this->prepareShutdown("");
+		die(exec('sh start.sh > /dev/null &'));
 	}
 	
 	function prepareShutdown($msg) {
 		if(strlen($msg) == 0) {
-			$msg = "QUIT :VikingBot - https://github.com/Ueland/VikingBot";
+			$msg = "VikingBot - https://github.com/Ueland/VikingBot";
 		}
                 sendData($this->socket, "QUIT :{$msg}");
                 foreach($this->plugins as $plugin) {
