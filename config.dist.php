@@ -9,6 +9,7 @@ $config = array(
 	'pass'		=>	'',			//Server password
 	'waitTime'	=>	10,			//How many seconds to wait before joining channel after connecting to server
 	'adminPass'	=>	'vikingbot',		//Bot admin password, used for commands like !exit (!exit vikingbot)
+	'memoryLimit'	=>	'128',			//Max memory the bot can use, in MB
 );
 
 //=====================================

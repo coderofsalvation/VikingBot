@@ -33,6 +33,7 @@ class fileReaderPlugin implements pluginInterface {
 				}
 				$h = fopen($this->db, 'w+');
 				fclose($h);
+				unset($data);
 			}
 			$this->lastCheck = time();
 		}	

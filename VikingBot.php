@@ -2,7 +2,6 @@
 
 set_time_limit(0);
 error_reporting(E_ALL);
-ini_set('memory_limit', '128M');
 date_default_timezone_set('GMT');
 declare(ticks = 1);
 
@@ -28,6 +27,7 @@ class VikingBot {
 		pcntl_signal(SIGINT, array($this, "signalHandler"));
 
 		$this->config = $config;
+		ini_set("memory_limit", $this->config['memoryLimit']."M");
 		$this->socket = stream_socket_client("".$config['server'].":".$config['port']) or die("Connection error!");
 		stream_set_blocking($this->socket, 0);
 		stream_set_timeout($this->socket, 600);
@@ -68,7 +68,7 @@ class VikingBot {
                         sleep(2);
                 	$this->inChannel = true;
 		}
-	
+
 		//Tick plugins
 		foreach($this->plugins as $plugin) {
 			$plugin->tick();
@@ -114,7 +114,13 @@ class VikingBot {
 					$plugin->onMessage($from, $chan, $msg);	
 				}
 			}
+
+			unset($bits);
+			unset($from);
+			unset($msg);
+			unset($bits);
 		}
+		unset($data);
 		
 		//Move along
 		$this->main();
