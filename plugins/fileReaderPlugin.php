@@ -17,7 +17,7 @@ class fileReaderPlugin implements pluginInterface {
         function init($config, $socket) {
 		$this->channel = $config['plugins']['fileReader']['channel'];
 		$this->socket = $socket;
-		$this->lastCheck = time();
+		$this->lastCheck = 0;
 		if(!is_file($this->db)) {
 			touch($this->db);
 		}
