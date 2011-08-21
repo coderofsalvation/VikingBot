@@ -30,6 +30,7 @@ class fileReaderPlugin implements pluginInterface {
 				$data = file($this->db);
 				foreach($data as $row) {
 					sendMessage($this->socket, $this->channel, $row);
+					usleep(300000);
 				}
 				$h = fopen($this->db, 'w+');
 				fclose($h);
