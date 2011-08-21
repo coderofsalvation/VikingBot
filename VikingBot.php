@@ -141,9 +141,7 @@ class VikingBot {
 
 		//Run garbage collection
 		gc_collect_cycles();
-		print_r($this->config);
 		$memFree = ((($this->config['memoryLimit']*1024)*1024) - memory_get_usage());
-		print_r($memFree);
 		if($memFree < (($this->config['memoryRestart']*1024)*1024)) {
 			$this->prepareShutdown("Out of memory, restarting...");
 			die(exec('sh start.sh > /dev/null &'));
