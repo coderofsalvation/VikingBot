@@ -63,81 +63,82 @@ class VikingBot {
 
 	function main() {
 
-		//Sleep a bit, no need to hog all CPU resources
-		usleep(500000);
+		while(true) {
+			//Sleep a bit, no need to hog all CPU resources
+			usleep(500000);
 
-		//Join channels if not already joined
-		if( !$this->inChannel && (time() - $this->config['waitTime']) > $this->startTime ) {
-                        $this->joinChannel($this->config['channel']);
-                        sleep(2);
-                	$this->inChannel = true;
-		}
-
-		//Run scheduled memory check
-		if(time() - 600 > $this->lastMemCheckTime) {
-			$this->lastMemCheckTime = time();
-			$this->doMemCheck();	
-		}
+			//Join channels if not already joined
+			if( !$this->inChannel && (time() - $this->config['waitTime']) > $this->startTime ) {
+        	                $this->joinChannel($this->config['channel']);
+                	        sleep(2);
+                		$this->inChannel = true;
+			}
+	
+			//Run scheduled memory check
+			if(time() - 600 > $this->lastMemCheckTime) {
+				$this->lastMemCheckTime = time();
+				$this->doMemCheck();	
+			}
 		
-		//Tick plugins
-		foreach($this->plugins as $plugin) {
-			$plugin->tick();
+			//Tick plugins
+			foreach($this->plugins as $plugin) {
+				$plugin->tick();
+			}
+
+			//Load data from IRC server
+			echo memory_get_usage()."\n";
+			$data = fgets($this->socket, 256);
+			if(strlen($data) > 0) {
+				echo "<Server to bot> ".$data;	
+				$bits = explode(' ', $data);
+				if($bits[0] == 'PING') {
+					sendData($this->socket, "PONG {$bits[1]}"); //Ping? Pong!
+				} else if($bits[0] == 'ERROR') {
+					echo "Error from server, qutting.\n";
+					$this->prepareShutdown("");
+					exit;	
+				}
+				$from = getNick($bits[0]);
+				$chan = trim($bits[2]);
+	
+				if(isset($chan[0]) && $chan[0] != '#') {
+					$chan = $from;
+				}
+
+				if(isset($bits[3])) {
+					$cmd = trim($bits[3]);
+					switch($cmd) {
+						case ':!exit':
+							$this->shutdown($bits[4], $from, $chan);
+						break;
+	
+						case ':!restart':
+							$this->restart($bits[4], $from, $chan);
+						break;
+					}
+					$cmd = null;
+				}
+
+				if($bits[1] == 'PRIVMSG') {
+	
+					$msg = substr($bits[3], 1);
+					for($i=4; $i<count($bits); $i++) {
+							$msg .= ' '.$bits[$i];
+					}
+					$msg = trim($msg);
+					foreach($this->plugins as $plugin) {
+						$plugin->onMessage($from, $chan, $msg);	
+					}
+					$msg = null;
+				}
+
+				$bits = null;
+				$from = null;
+				$chan = null;
+				$bits = null;
+			}
+			$data = null;
 		}
-
-		//Load data from IRC server
-		$data = fgets($this->socket, 256);
-		if(strlen($data) > 0) {
-			echo "<Server to bot> ".$data;	
-			$bits = explode(' ', $data);
-			if($bits[0] == 'PING') {
-				sendData($this->socket, "PONG {$bits[1]}"); //Ping? Pong!
-			} else if($bits[0] == 'ERROR') {
-				echo "Error from server, qutting.\n";
-				$this->prepareShutdown("");
-				exit;	
-			}
-			$from = getNick($bits[0]);
-			$chan = trim($bits[2]);
-
-			if(isset($chan[0]) && $chan[0] != '#') {
-				$chan = $from;
-			}
-
-			if(isset($bits[3])) {
-				$cmd = trim($bits[3]);
-				switch($cmd) {
-					case ':!exit':
-						$this->shutdown($bits[4], $from, $chan);
-					break;
-
-					case ':!restart':
-						$this->restart($bits[4], $from, $chan);
-					break;
-				}
-				$cmd = null;
-			}
-
-			if($bits[1] == 'PRIVMSG') {
-
-				$msg = substr($bits[3], 1);
-				for($i=4; $i<count($bits); $i++) {
-					$msg .= ' '.$bits[$i];
-				}
-				$msg = trim($msg);
-				foreach($this->plugins as $plugin) {
-					$plugin->onMessage($from, $chan, $msg);	
-				}
-				$msg = null;
-			}
-
-			$bits = null;
-			$from = null;
-			$chan = null;
-			$bits = null;
-		}
-		$data = null;
-		//Move along
-		$this->main();
 	}
 
 	function doMemCheck() {
