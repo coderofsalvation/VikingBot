@@ -56,7 +56,9 @@ class VikingBot {
 	}
 
 	function login() {
-		sendData($this->socket, "PASS {$this->config['pass']}");
+		if(strlen($this->config['pass']) > 0) {
+			sendData($this->socket, "PASS {$this->config['pass']}");
+		}
 		sendData($this->socket, "NICK {$this->config['nick']}");
 		sendData($this->socket, "USER {$this->config['name']} 0 *: {$this->config['name']}");
 	}
