@@ -69,25 +69,28 @@ class rssPlugin implements pluginInterface {
 			if(!$this->lastCheck[$feed['url']] || ($this->lastCheck[$feed['url']] + ($feed['pollInterval'] *60) < time())) {
 				$this->lastCheck[$feed['url']] = time();
 				echo "rssPlugin: Checking RSS: {$feed['url']}\n";
-
-				$content = file_get_contents($feed['url']);
-				$x = new SimpleXmlElement($content);
+				try {
+					$content = file_get_contents($feed['url']);
+					$x = new SimpleXmlElement($content);
 				
-				//RSS feed format
-				if(isset($x->channel)) {
-					foreach($x->channel->item as $entry) { 
-						$this->saveEntry($feed['title'], $feed['channel'], $entry->title, $entry->link);
-					}
-				} else {
-					//Atom feed format
-					if(isset($x->entry)) {
-						foreach($x->entry as $entry) {
-							$this->saveEntry($feed['title'], $feed['channel'], $entry->title, $entry->link->attributes()->href);
+					//RSS feed format
+					if(isset($x->channel)) {
+						foreach($x->channel->item as $entry) { 
+							$this->saveEntry($feed['title'], $feed['channel'], $entry->title, $entry->link);
+						}
+					} else {
+						//Atom feed format
+						if(isset($x->entry)) {
+							foreach($x->entry as $entry) {
+								$this->saveEntry($feed['title'], $feed['channel'], $entry->title, $entry->link->attributes()->href);
+							}
 						}
 					}
+					$content = null;	
+					$x = null;
+				}catch(Exception $e) {
+					echo $e->getMessage()."\n";
 				}
-				$content = null;	
-				$x = null;
 			}
 		}
 	}
