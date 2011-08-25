@@ -88,7 +88,6 @@ class VikingBot {
 			}
 
 			//Load data from IRC server
-			echo memory_get_usage()."\n";
 			$data = fgets($this->socket, 256);
 			if(strlen($data) > 0) {
 				echo "<Server to bot> ".$data;	
