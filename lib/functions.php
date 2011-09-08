@@ -41,3 +41,20 @@ function sendData($socket, $msg) {
 	fwrite($socket, "{$msg}\r\n");
 	echo "<Bot to server> {$msg}\n";
 }
+
+/**
+ * Handle serious errors
+ *
+ */
+function errorHandler($errno, $errstr, $errfile, $errline) {
+
+	switch ($errno) {
+		case E_USER_WARNING:
+			//Serious error, like server disconnection. Take a little break before restarting	
+			echo "Error detected, restarting the bot.\n";
+			sleep(5);
+			die(exec('sh start.sh > /dev/null &'));		
+		break;
+	}
+	return false;
+}
