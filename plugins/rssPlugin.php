@@ -66,7 +66,7 @@ class rssPlugin implements pluginInterface {
 	 */
 	function parseFeeds() {
 		foreach($this->rssConfig as $feed) {
-			if(!$this->lastCheck[$feed['url']] || ($this->lastCheck[$feed['url']] + ($feed['pollInterval'] *60) < time())) {
+			if(!isset($this->lastCheck[$feed['url']]) || ($this->lastCheck[$feed['url']] + ($feed['pollInterval'] *60) < time())) {
 				$this->lastCheck[$feed['url']] = time();
 				echo "rssPlugin: Checking RSS: {$feed['url']}\n";
 				try {
