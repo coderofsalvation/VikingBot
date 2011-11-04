@@ -103,7 +103,10 @@ class VikingBot {
 					exit;	
 				}
 				$from = getNick($bits[0]);
-				$chan = trim($bits[2]);
+
+				if(isset($bits[2])) {
+					$chan = trim($bits[2]);
+				}
 	
 				if(isset($chan[0]) && $chan[0] != '#') {
 					$chan = $from;
