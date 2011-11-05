@@ -93,12 +93,12 @@ class VikingBot {
 			//Load data from IRC server
 			$data = fgets($this->socket, 256);
 			if(strlen($data) > 0) {
-				echo "<Server to bot> ".$data;	
+				logMsg("<Server to bot> ".$data);
 				$bits = explode(' ', $data);
 				if($bits[0] == 'PING') {
 					sendData($this->socket, "PONG {$bits[1]}"); //Ping? Pong!
 				} else if($bits[0] == 'ERROR') {
-					echo "Error from server, qutting.\n";
+					logMsg("Error from server, qutting.");
 					$this->prepareShutdown("");
 					exit;	
 				}
@@ -160,7 +160,7 @@ class VikingBot {
 	}
 
 	function joinChannel($channel) {
-		echo "Joining channel {$channel}\n";
+		logMsg("Joining channel {$channel}");
 		if(is_array($channel)) {
 			foreach($channel as $chan) {
 				sendData($this->socket, "JOIN {$chan}");
@@ -217,7 +217,7 @@ class VikingBot {
 
 	function signalHandler($signal) {
 		sendData($this->socket, "QUIT :Caught signal {$signal}, shutting down");
-		echo "Caught {$signal}, shutting down\n";
+		logMsg("Caught {$signal}, shutting down\n");
 		exit();
 	}
 }

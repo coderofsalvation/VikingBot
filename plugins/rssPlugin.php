@@ -25,7 +25,7 @@ class rssPlugin implements pluginInterface {
 
 		//Clean up the RSS database each hour
 		if(($this->lastCleanTime + 3600) < time()) {
-			echo "rssPlugin: Cleaning RSS DB\n";
+			logMsg("rssPlugin: Cleaning RSS DB");
 			$this->cleanFeedDB();
 			$this->lastCleanTime = time();
 		}
@@ -68,7 +68,7 @@ class rssPlugin implements pluginInterface {
 		foreach($this->rssConfig as $feed) {
 			if(!isset($this->lastCheck[$feed['url']]) || ($this->lastCheck[$feed['url']] + ($feed['pollInterval'] *60) < time())) {
 				$this->lastCheck[$feed['url']] = time();
-				echo "rssPlugin: Checking RSS: {$feed['url']}\n";
+				logMsg("rssPlugin: Checking RSS: {$feed['url']}");
 				try {
 					$content = file_get_contents($feed['url']);
 					$x = new SimpleXmlElement($content);
@@ -89,7 +89,7 @@ class rssPlugin implements pluginInterface {
 					$content = null;	
 					$x = null;
 				}catch(Exception $e) {
-					echo $e->getMessage()."\n";
+					logMsg($e->getMessage());
 				}
 			}
 		}
