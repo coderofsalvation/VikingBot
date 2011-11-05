@@ -14,10 +14,11 @@ The following commands are supported out of the box
 The following commands are supported via the plugins that 
 is installed per default:
 
-!memory			-	The bot responds with memory usage statistics
-!ping			-	The bot responds with a pong to say that it is still alive
-!uptime			-	The bot responds with the bots uptime
-!upgrade [password]	-	The bot will attempt to upgrade itself to the latest version via GIT pull
+!botlog [password] [rows]	-	The bot responds with the [rows] last rows of the bot log file (default: 10 rows)
+!memory				-	The bot responds with memory usage statistics
+!ping				-	The bot responds with a pong to say that it is still alive
+!uptime				-	The bot responds with the bots uptime
+!upgrade [password]		-	The bot will attempt to upgrade itself to the latest version via GIT pull
 
 ========== INSTALLED PLUGINS ========== 
 The following plugins are installed per default:
@@ -27,7 +28,10 @@ fileReaderPlugin:
 	useful for GIT/SVN commit hooks or anything other that should push data to a 
 	channel
 
-memoryPlugin
+botLogPlugin:
+	- Plugin that responds to a "!log" with the last N rows of the bot`s log file
+
+memoryPlugin:
 	- Plugin that responds to a "!memory" with information about memory usage
 
 pingPlugin:
