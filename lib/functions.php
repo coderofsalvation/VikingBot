@@ -31,7 +31,9 @@ function getNick($in) {
  * Write a message to channel/user
  */
 function sendMessage($socket, $channel, $msg) {
-	sendData($socket, "PRIVMSG {$channel} :{$msg}");
+	if(strlen($msg) > 2) { //Avoid sending empty lines to server, since all data should contain a line break, 2 chars is minimum
+		sendData($socket, "PRIVMSG {$channel} :{$msg}");
+	}
 }
 
 /**
