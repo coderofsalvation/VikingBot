@@ -99,6 +99,10 @@ class rssPlugin implements pluginInterface {
 	 * Saves (if needed) RSS entries
 	 */
 	function saveEntry($feedTitle, $feedChannel, $elementTitle, $elementLink) {
+
+		//nl2br wont kill all linebreaks, "magic.."
+		$elementTitle = preg_replace('/[\r\n]+/', '', $elementTitle);
+
 		$hash = md5($elementTitle.$elementLink);
 		$data = file("db/rssPlugin.db");
 		foreach($data as $row) {
