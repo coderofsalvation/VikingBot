@@ -40,8 +40,12 @@ function sendMessage($socket, $channel, $msg) {
  * Sends data to server
  */
 function sendData($socket, $msg) {
-	fwrite($socket, "{$msg}\r\n");
-	logMsg("<Bot to server> {$msg}");
+	$res = fwrite($socket, "{$msg}\r\n");
+	if($res === false) {
+		trigger_error("Broken pipe on write, restarting the bot.");
+	} else {
+		logMsg("<Bot to server> {$msg}");
+	}
 }
 
 /**
@@ -50,12 +54,22 @@ function sendData($socket, $msg) {
 function errorHandler($errno, $errstr, $errfile, $errline) {
 
 	switch ($errno) {
+
 		case E_USER_WARNING:
 			//Serious error, like server disconnection. Take a little break before restarting	
 			logMsg("Error detected, restarting the bot.");
 			sleep(5);
-			die(exec('sh start.sh > /dev/null &'));		
+			doRestart();
 		break;
+
+                //PHP Notice, ignore it
+                case E_NOTICE:
+                break;
+
+		//Default error handling, just log it
+                default:
+                        logMsg("errorHandler: unhandled PHP error {$errno}, {$errstr} from {$errfile}:{$errline}");
+                break;
 	}
 	return false;
 }
@@ -68,4 +82,11 @@ function logMsg($msg) {
 		$msg .= "\n";
 	}		
 	echo "[".date("t.M.y H:i:s")."] {$msg}";
+}
+
+/**
+ * Perform restart of the bot
+ */
+function doRestart() {
+	die(exec('sh start.sh > /dev/null &'));
 }

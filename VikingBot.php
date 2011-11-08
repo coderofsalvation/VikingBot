@@ -155,7 +155,7 @@ class VikingBot {
 		$memFree = ((($this->config['memoryLimit']*1024)*1024) - memory_get_usage());
 		if($memFree < (($this->config['memoryRestart']*1024)*1024)) {
 			$this->prepareShutdown("Out of memory, restarting...");
-			die(exec('sh start.sh > /dev/null &'));
+			doRestart();
 		}
 	}
 
@@ -178,7 +178,7 @@ class VikingBot {
                 }
 		sendMessage($this->socket, $chan, "{$from}: Restarting...");
 		$this->prepareShutdown("");
-		die(exec('sh start.sh > /dev/null &'));
+		doRestart();
 	}
 	
 	function prepareShutdown($msg) {
