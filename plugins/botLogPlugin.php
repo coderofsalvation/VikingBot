@@ -20,7 +20,7 @@ class botLogPlugin implements pluginInterface {
         function onMessage($from, $channel, $msg) {
 
 		//Only trigger on !botlog
-		if(stringStartsWith($msg, '!botlog')) {
+		if(stringStartsWith($msg, "{$this->config['trigger']}botlog")) {
 
 			//Get hold of number of rows to show and possible password
 			$tmp = explode(" ", $msg);

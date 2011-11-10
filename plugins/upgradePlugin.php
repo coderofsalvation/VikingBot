@@ -23,7 +23,7 @@ class upgradePlugin implements pluginInterface {
         }
 
         function onMessage($from, $channel, $msg) {
-                if(stringStartsWith($msg, '!upgrade')) {
+                if(stringStartsWith($msg, "{$this->config['trigger']}upgrade")) {
 			$bits = explode(" ", $msg);
 			$pass = $bits[1];
 			if(strlen($this->config['adminPass']) > 0 && $pass != $this->config['adminPass']) {

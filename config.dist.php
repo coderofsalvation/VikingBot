@@ -11,6 +11,7 @@ $config = array(
 	'adminPass'	=>	'vikingbot',		//Bot admin password, used for commands like !exit (!exit vikingbot)
 	'memoryLimit'	=>	'128',			//Max memory the bot can use, in MB
         'memoryRestart' =>      '10',                   //Min memory usage, in MB. (The bot will try to clear RAM or restart if reached)
+	'trigger'	=>	'!',			//What character should be used as bot command prefixes
 );
 
 //=====================================

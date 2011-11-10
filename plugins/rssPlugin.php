@@ -11,8 +11,10 @@ class rssPlugin implements pluginInterface {
 	var $socket;
 	var $started;
 	var $todo;
+	var $config;
 
         function init($config, $socket) {
+		$this->config = $config;
 		$this->todo = array();
 		$this->rssConfig = $config['plugins']['rssReader'];
 		$this->started = time();

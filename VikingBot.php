@@ -115,11 +115,11 @@ class VikingBot {
 				if(isset($bits[3])) {
 					$cmd = trim($bits[3]);
 					switch($cmd) {
-						case ':!exit':
+						case ":{$this->config['trigger']}exit":
 							$this->shutdown($bits[4], $from, $chan);
 						break;
 	
-						case ':!restart':
+						case ":{$this->config['trigger']}restart":
 							$this->restart($bits[4], $from, $chan);
 						break;
 					}

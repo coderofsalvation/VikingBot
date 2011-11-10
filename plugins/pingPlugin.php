@@ -7,9 +7,11 @@
 class pingPlugin implements pluginInterface {
 
 	var $socket;
+	var $config;
 
         function init($config, $socket) {
 		$this->socket = $socket;
+		$this->config = $config;
 	}
 
         function tick() {
@@ -17,7 +19,7 @@ class pingPlugin implements pluginInterface {
 	}
 
         function onMessage($from, $channel, $msg) {
-		if(stringEndsWith($msg, '!ping')) {
+		if(stringEndsWith($msg, "{$this->config['trigger']}ping")) {
 			sendMessage($this->socket, $channel, $from.": Pong");
 		}
 	}

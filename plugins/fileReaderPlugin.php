@@ -13,11 +13,13 @@ class fileReaderPlugin implements pluginInterface {
 	var $channel = '';
 	var $db = 'db/fileReaderOutput.db';
 	var $lastCheck;
+	var $config;
 
         function init($config, $socket) {
 		$this->channel = $config['plugins']['fileReader']['channel'];
 		$this->socket = $socket;
 		$this->lastCheck = 0;
+		$this->config = $config;
 		if(!is_file($this->db)) {
 			touch($this->db);
 		}
