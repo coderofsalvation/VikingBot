@@ -98,9 +98,10 @@ class VikingBot {
 				if($bits[0] == 'PING') {
 					sendData($this->socket, "PONG {$bits[1]}"); //Ping? Pong!
 				} else if($bits[0] == 'ERROR') {
-					logMsg("Error from server, qutting.");
+					logMsg("Error from server, trying to reconnect in 2 minutes");
 					$this->prepareShutdown("");
-					exit;	
+					sleep(120);
+					doRestart();
 				}
 				$from = getNick($bits[0]);
 
