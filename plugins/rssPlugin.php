@@ -128,18 +128,21 @@ class rssPlugin implements pluginInterface {
 	function cleanFeedDB() {
 		$data = file("db/rssPlugin.db");
 		$data = array_reverse($data);
-		if(count($data) > 1000) {
+		if(count($data) > 5000) {
 			$newData = array();
 			$counter = 0;
 			foreach($data as $d) {
+				$counter++;
 				$newData[] = $d;
-				if($counter == 1000) {
+				if($counter == 5000) {
 					break;
 				}
 			}
 			$h = fopen("db/rssPlugin.db", 'w+') or die("db folder is not writable!");
 			foreach($newData as $d) {
-				fwrite($h, $d."\n");
+				if(strlen($d) > 1) {
+					fwrite($h, $d."\n");
+				}
 			}
 			fclose($h);
 			$newData = null;
