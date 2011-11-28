@@ -40,10 +40,8 @@ function sendMessage($socket, $channel, $msg) {
  * Sends data to server
  */
 function sendData($socket, $msg) {
-	$res = fwrite($socket, "{$msg}\r\n");
-	if($res === false) {
-		trigger_error("Broken pipe on write, restarting the bot.");
-	} else {
+	$res = fwrite($socket, "{$msg}\r\n") or trigger_error("Broken pipe on write, restarting the bot.");
+	if($res) {
 		logMsg("<Bot to server> {$msg}");
 	}
 }
