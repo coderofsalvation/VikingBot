@@ -53,11 +53,20 @@ function errorHandler($errno, $errstr, $errfile, $errline) {
 
 	switch ($errno) {
 
+		//Serious error, like server disconnection. Take a little break before restarting
 		case E_USER_WARNING:
-			//Serious error, like server disconnection. Take a little break before restarting	
 			logMsg("Error detected, restarting the bot.");
-			sleep(5);
+			sleep(10);
 			doRestart();
+		break;
+
+		//PHP Warnings, like SSL errors
+		case E_WARNING:
+			if(strstr($errstr, "OpenSSL Error messages") !== false) {
+				logMsg("SSL error detected, restarting the bot. ({$errstr})");
+				sleep(10);
+				doRestart();
+			}		
 		break;
 
                 //PHP Notice, ignore it
