@@ -12,6 +12,7 @@ $config = array(
 	'memoryLimit'	=>	'128',			//Max memory the bot can use, in MB
         'memoryRestart' =>      '10',                   //Min memory usage, in MB. (The bot will try to clear RAM or restart if reached)
 	'trigger'	=>	'!',			//What character should be used as bot command prefixes
+	'maxPerTenMin'	=>	50			//Max messgages a user can send per 10 minutes before beeing ignored for that time
 );
 
 //=====================================

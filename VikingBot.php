@@ -23,6 +23,7 @@ class VikingBot {
 	var $plugins;
 	var $config;
 	var $lastMemCheckTime;
+	var $floodDb; //Internal database over user activity to keep flodders away
 
 	function __construct($config) {
 
@@ -70,7 +71,7 @@ class VikingBot {
 
 		while(true) {
 			//Sleep a bit, no need to hog all CPU resources
-			usleep(500000);
+			usleep(100000);
 
 			//Join channels if not already joined
 			if( !$this->inChannel && (time() - $this->config['waitTime']) > $this->startTime ) {
@@ -105,41 +106,45 @@ class VikingBot {
 				}
 				$from = getNick($bits[0]);
 
-				if(isset($bits[2])) {
-					$chan = trim($bits[2]);
-				}
-	
-				if(isset($chan[0]) && $chan[0] != '#') {
-					$chan = $from;
-				}
+				if($this->antiFlood($from)) {
 
-				if(isset($bits[3])) {
-					$cmd = trim($bits[3]);
-					switch($cmd) {
-						case ":{$this->config['trigger']}exit":
-							$this->shutdown($bits[4], $from, $chan);
-						break;
+					if(isset($bits[2])) {
+						$chan = trim($bits[2]);
+					}
+			
+					if(isset($chan[0]) && $chan[0] != '#') {
+						$chan = $from;
+					}
 	
-						case ":{$this->config['trigger']}restart":
-							$this->restart($bits[4], $from, $chan);
-						break;
+					if(isset($bits[3])) {
+						$cmd = trim($bits[3]);
+						switch($cmd) {
+							case ":{$this->config['trigger']}exit":
+								$this->shutdown($bits[4], $from, $chan);
+							break;
+		
+							case ":{$this->config['trigger']}restart":
+								$this->restart($bits[4], $from, $chan);
+							break;
+						}
+						$cmd = null;
 					}
-					$cmd = null;
-				}
 
-				if($bits[1] == 'PRIVMSG') {
-	
-					$msg = substr($bits[3], 1);
-					for($i=4; $i<count($bits); $i++) {
-							$msg .= ' '.$bits[$i];
+					if($bits[1] == 'PRIVMSG') {
+		
+						$msg = substr($bits[3], 1);
+						for($i=4; $i<count($bits); $i++) {
+								$msg .= ' '.$bits[$i];
+						}
+						$msg = trim($msg);
+						foreach($this->plugins as $plugin) {
+							$plugin->onMessage($from, $chan, $msg);	
+						}
+						$msg = null;
 					}
-					$msg = trim($msg);
-					foreach($this->plugins as $plugin) {
-						$plugin->onMessage($from, $chan, $msg);	
-					}
-					$msg = null;
+				} else {
+					logMsg("Ignoring {$from} due to flooding");
 				}
-
 				$bits = null;
 				$from = null;
 				$chan = null;
@@ -220,6 +225,26 @@ class VikingBot {
 		sendData($this->socket, "QUIT :Caught signal {$signal}, shutting down");
 		logMsg("Caught {$signal}, shutting down\n");
 		exit();
+	}
+
+	function antiFlood($user) {
+		$interval = substr(date('i'), 0, 1);
+		if(isset($this->floodDb[$interval])) {
+			$floodData = $this->floodDb[$interval];
+		} else {
+			$floodData = array();
+		}
+		print_r($floodData);
+		if(isset($floodData[$user])) {
+			$floodData[$user]++;
+			if($floodData[$user] > $this->config['maxPerTenMin']) {
+				return false;
+			}
+		} else {
+			$floodData[$user] = 1;
+		}
+		$this->floodDb = array($interval=>$floodData);
+		return true;
 	}
 }
 
