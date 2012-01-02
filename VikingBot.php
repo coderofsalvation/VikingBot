@@ -234,7 +234,6 @@ class VikingBot {
 		} else {
 			$floodData = array();
 		}
-		print_r($floodData);
 		if(isset($floodData[$user])) {
 			$floodData[$user]++;
 			if($floodData[$user] > $this->config['maxPerTenMin']) {
