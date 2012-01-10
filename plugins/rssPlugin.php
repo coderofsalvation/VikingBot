@@ -12,6 +12,7 @@ class rssPlugin implements pluginInterface {
 	var $started;
 	var $todo;
 	var $config;
+	var $lastMsgSent;
 
         function init($config, $socket) {
 		$this->config = $config;
@@ -39,8 +40,11 @@ class rssPlugin implements pluginInterface {
 
 		//If we got todo, output one row from it
 		if(count($this->todo) > 0) {
-			$row = array_pop($this->todo);
-	                sendMessage($this->socket, $row[0], $row[1]);
+			if(time() > ($this->lastMsgSent + 5)) {
+				$row = array_pop($this->todo);
+		                sendMessage($this->socket, $row[0], $row[1]);
+				$this->lastMsgSent = time();
+			}
 		}
 
         }
