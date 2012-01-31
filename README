@@ -19,6 +19,7 @@ is installed per default:
 !ping				-	The bot responds with a pong to say that it is still alive
 !uptime				-	The bot responds with the bots uptime
 !upgrade [password]		-	The bot will attempt to upgrade itself to the latest version via GIT pull
+!op nick channel [password]	-	The bot attempts to give *user* on *channel OP status
 
 ========== INSTALLED PLUGINS ========== 
 The following plugins are installed per default:
@@ -33,6 +34,9 @@ botLogPlugin:
 
 memoryPlugin:
 	- Plugin that responds to a "!memory" with information about memory usage
+
+opPlugin:
+	- Plugin that respons to a "!op ..." by oping a user if the bot has op itsefl
 
 pingPlugin:
 	- Plugin that responds to a "!ping" with a "pong".
