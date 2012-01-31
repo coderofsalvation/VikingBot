@@ -130,9 +130,9 @@ class VikingBot {
 						$cmd = null;
 					}
 
-					if($bits[1] == 'PRIVMSG') {
+					if($bits[1] == 'PRIVMSG' || $bits[1] == 'JOIN' || $bits[1] == 'PART') {
 		
-						$msg = substr($bits[3], 1);
+						$msg = @substr($bits[3], 1);
 						for($i=4; $i<count($bits); $i++) {
 								$msg .= ' '.$bits[$i];
 						}
