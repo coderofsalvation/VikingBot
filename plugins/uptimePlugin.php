@@ -16,6 +16,9 @@ class uptimePlugin implements pluginInterface {
 		$this->config = $config;
 	}
 
+        function onData($data) {
+        }
+
         function tick() {
 
 	}

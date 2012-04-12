@@ -25,6 +25,9 @@ class fileReaderPlugin implements pluginInterface {
 		}
 	}
 
+        function onData($data) {
+        }
+
         function tick() {
 		if($this->lastCheck < time()) {
 			clearstatcache();

@@ -17,6 +17,9 @@ class botLogPlugin implements pluginInterface {
 
         }
 
+        function onData($data) {
+        }
+
         function onMessage($from, $channel, $msg) {
 
 		//Only trigger on !botlog

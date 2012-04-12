@@ -130,7 +130,7 @@ class VikingBot {
 						$cmd = null;
 					}
 
-					if($bits[1] == 'PRIVMSG' || $bits[1] == 'JOIN' || $bits[1] == 'PART') {
+					if($bits[1] == 'PRIVMSG') {
 		
 						$msg = @substr($bits[3], 1);
 						for($i=4; $i<count($bits); $i++) {
@@ -141,6 +141,11 @@ class VikingBot {
 							$plugin->onMessage($from, $chan, $msg);	
 						}
 						$msg = null;
+					} else {
+						foreach($this->plugins as $plugin) {
+							if(method_exists($plugin, 'onData'))
+								$plugin->onData($data);
+						}
 					}
 				} else {
 					logMsg("Ignoring {$from} due to flooding");

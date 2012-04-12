@@ -24,6 +24,9 @@ class rssPlugin implements pluginInterface {
 		$this->cleanFeedDB();
 	}
 
+        function onData($data) {
+        }
+
         function tick() {
 
 		//Clean up the RSS database each hour

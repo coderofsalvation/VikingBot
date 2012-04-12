@@ -13,6 +13,9 @@ class opPlugin implements pluginInterface {
         function tick() {
         }
 
+        function onData($data) {
+        }
+
         function onMessage($from, $channel, $msg) {
                 if(stringStartsWith($msg, "{$this->config['trigger']}op")) {
                         $bits = explode(" ", $msg);

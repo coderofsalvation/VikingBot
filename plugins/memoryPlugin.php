@@ -17,6 +17,9 @@ class memoryPlugin implements pluginInterface {
 
 	}
 
+        function onData($data) {
+        }
+
         function onMessage($from, $channel, $msg) {
 		if(stringEndsWith($msg, "{$this->config['trigger']}memory")) {
 			$usedMem = round(((memory_get_usage() / 1024) / 1024),2);

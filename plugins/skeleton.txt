@@ -1,20 +1,46 @@
 <?php
 
+/**
+	This is an example skeleton for a Vikingbot plugin
+**/
 class examplePlugin implements pluginInterface {
 
+        /**
+        Called when plugins are loaded
+        **/
         function init($config, $socket) {
 
         }
 
+        /**
+        Called about twice per second or when there are
+        activity on the channel the bot are in.
+        put your jobs that needs to be run without user interaction here
+        **/
         function tick() {
 
         }
 
+        /**
+        Called when messages are posted on the channel
+        the bot are in, or when somebody talks to it
+        **/
         function onMessage($from, $channel, $msg) {
 
         }
 
+        /**
+        Called when the bot is shutting down
+        **/
         function destroy() {
+
+        }
+
+	/**
+	Called when the server sends data to the bot which is *not* a channel message, useful
+	if you want to have a plugin do it`s own communication to the server.
+	**/
+        function onData($data) {
 
         }
 }

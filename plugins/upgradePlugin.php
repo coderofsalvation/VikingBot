@@ -22,6 +22,9 @@ class upgradePlugin implements pluginInterface {
 
         }
 
+        function onData($data) {
+        }
+
         function onMessage($from, $channel, $msg) {
                 if(stringStartsWith($msg, "{$this->config['trigger']}upgrade")) {
 			$bits = explode(" ", $msg);
