@@ -134,7 +134,7 @@ class rssPlugin implements pluginInterface {
 	 */
 	function cleanFeedDB() {
 		$data = file("db/rssPlugin.db");
-		$data = array_reverse($data);
+		//$data = array_reverse($data);
 		if(count($data) > 5000) {
 			$newData = array();
 			$counter = 0;
