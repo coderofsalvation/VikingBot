@@ -1,0 +1,2 @@
+Hi my name is vikingbot, check these public commands:
+!uptime, !memory, !quote, !guide, !translate, !google <something>, !php <functionname>, !js <keyword>, !issue <subject>

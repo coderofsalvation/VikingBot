@@ -13,21 +13,23 @@ class rssPlugin implements pluginInterface {
 	var $todo;
 	var $config;
 	var $lastMsgSent;
+  var $lastMsgWasMe;
 
-        function init($config, $socket) {
+  function init($config, $socket) {
 		$this->config = $config;
 		$this->todo = array();
 		$this->rssConfig = $config['plugins']['rssReader'];
 		$this->started = time();
 		$this->socket = $socket;
 		$this->controlFeedDB();
-		$this->cleanFeedDB();
+	 	$this->cleanFeedDB();
+    $this->lastMsgWasMe = false;
 	}
 
-        function onData($data) {
-        }
+  function onData($data) {
+  }
 
-        function tick() {
+  function tick() {
 
 		//Clean up the RSS database each hour
 		if(($this->lastCleanTime + 3600) < time()) {
@@ -47,13 +49,14 @@ class rssPlugin implements pluginInterface {
 				$row = array_pop($this->todo);
 		                sendMessage($this->socket, $row[0], $row[1]);
 				$this->lastMsgSent = time();
+        $this->lastMsgWasMe = true;
 			}
 		}
 
         }
 
         function onMessage($from, $channel, $msg) {
-
+          $this->lastMsgWasMe = false;
         }
 
         function destroy() {
@@ -85,7 +88,7 @@ class rssPlugin implements pluginInterface {
 					//RSS feed format
 					if(isset($x->channel)) {
 						foreach($x->channel->item as $entry) { 
-							$this->saveEntry($feed['title'], $feed['channel'], $entry->title, $entry->link);
+							$this->saveEntry($feed['title'], $feed['channel'], $entry->title, isset($feed['nolink']) ? $entry->description : $entry->link);
 						}
 					} else {
 						//Atom feed format
@@ -110,7 +113,8 @@ class rssPlugin implements pluginInterface {
 	function saveEntry($feedTitle, $feedChannel, $elementTitle, $elementLink) {
 
 		//nl2br wont kill all linebreaks, "magic.."
-		$elementTitle = preg_replace('/[\r\n]+/', '', $elementTitle);
+		$elementTitle = strip_tags($elementTitle);
+		$elementTitle = str_replace( array("\n","\r"), "", $elementTitle);
 
 		$hash = md5($elementTitle.$elementLink);
 		$data = file("db/rssPlugin.db");

@@ -32,7 +32,9 @@ function getNick($in) {
  */
 function sendMessage($socket, $channel, $msg) {
 	if(strlen($msg) > 2) { //Avoid sending empty lines to server, since all data should contain a line break, 2 chars is minimum
-		sendData($socket, "PRIVMSG {$channel} :{$msg}");
+    // utf8encode the string, so other server/clients can more easily guess which encoding we usea
+    // in other words, the famous flashircclient lightirc client now shows messages with strange chars :)
+		sendData($socket, "PRIVMSG {$channel} :".utf8_encode($msg) );
 	}
 }
 
