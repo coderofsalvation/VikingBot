@@ -1,0 +1,149 @@
+http://www.w3schools.com/js/js_statements.asp : JS Statements
+http://www.w3schools.com/js/js_comments.asp : JS Comments
+http://www.w3schools.com/js/js_variables.asp : JS Variables
+http://www.w3schools.com/js/js_operators.asp : JS Operators
+http://www.w3schools.com/js/js_comparisons.asp : JS Comparisons
+http://www.w3schools.com/js/js_if_else.asp : JS If...Else
+http://www.w3schools.com/js/js_switch.asp : JS Switch
+http://www.w3schools.com/js/js_popup.asp : JS Popup Boxes
+http://www.w3schools.com/js/js_functions.asp : JS Functions
+http://www.w3schools.com/js/js_loop_for.asp : JS For Loop
+http://www.w3schools.com/js/js_loop_while.asp : JS While Loop
+http://www.w3schools.com/js/js_break.asp : JS Break Loops
+http://www.w3schools.com/js/js_loop_for_in.asp : JS For...In
+http://www.w3schools.com/js/js_events.asp : JS Events
+http://www.w3schools.com/js/js_try_catch.asp : JS Try...Catch
+http://www.w3schools.com/js/js_throw.asp : JS Throw
+http://www.w3schools.com/js/js_special_characters.asp : JS Special Text
+http://www.w3schools.com/js/js_guidelines.asp : JS Guidelines
+http://www.w3schools.com/js/js_obj_intro.asp : JS Objects Intro
+http://www.w3schools.com/js/js_obj_string.asp : JS String
+http://www.w3schools.com/js/js_obj_date.asp : JS Date
+http://www.w3schools.com/js/js_obj_array.asp : JS Array
+http://www.w3schools.com/js/js_obj_boolean.asp : JS Boolean
+http://www.w3schools.com/js/js_obj_math.asp : JS Math
+http://www.w3schools.com/js/js_obj_regexp.asp : JS RegExp
+http://www.w3schools.com/js/js_browser.asp : JS Browser
+http://www.w3schools.com/js/js_cookies.asp : JS Cookies
+http://www.w3schools.com/js/js_form_validation.asp : JS Validation
+http://www.w3schools.com/js/js_timing.asp : JS Timing
+http://www.w3schools.com/js/js_objects.asp : JS Create Object
+http://www.w3schools.com/js/js_ex_objects.asp : JS Objects Examples
+http://www.w3schools.com/js/js_ex_browser.asp : JS Browser Examples
+http://www.w3schools.com/js/js_ex_dom.asp" >JS DOM Examples
+http://www.w3schools.com/js/js_obj_boolean.asp : toSource()  Returns a string containing the source of the Boolean object; you can use this string to create an equivalent object.
+http://www.w3schools.com/js/js_obj_boolean.asp : toString()  Returns a string of either "true" or "false" depending upon the value of the object.
+http://www.w3schools.com/js/js_obj_boolean.asp : valueOf() Returns the primitive value of the Boolean object.
+http://www.w3schools.com/js/js_obj_string.asp : charAt()  Returns the character at the specified index.
+http://www.w3schools.com/js/js_obj_string.asp : charCodeAt()  Returns a number indicating the Unicode value of the character at the given index.
+http://www.w3schools.com/js/js_obj_string.asp : concat()  Combines the text of two strings and returns a new string
+http://www.w3schools.com/js/js_obj_string.asp : indexOf() Returns the index within the calling String object of the first occurrence of the specified value, or -1 if not found.
+http://www.w3schools.com/js/js_obj_string.asp : lastIndexOf() Returns the index within the calling String object of the last occurrence of the specified value, or -1 if not found.
+http://www.w3schools.com/js/js_obj_string.asp : localeCompare() Returns a number indicating whether a reference string comes before or after or is the same as the given string in sort order.
+http://www.w3schools.com/js/js_obj_string.asp : length()  Returns the length of the string
+http://www.w3schools.com/js/js_obj_string.asp : match() Used to match a regular expression against a string
+http://www.w3schools.com/js/js_obj_string.asp : replace() Used to find a match between a regular expression and a string, and to replace the matched substring with a new string
+http://www.w3schools.com/js/js_obj_string.asp : search()  Executes the search for a match between a regular expression and a specified string 
+http://www.w3schools.com/js/js_obj_string.asp : slice() Extracts a section of a string and returns a new string
+http://www.w3schools.com/js/js_obj_string.asp : split() Splits a String object into an array of strings by separating the string into substrings.
+http://www.w3schools.com/js/js_obj_string.asp : substr()  Returns the characters in a string beginning at the specified location through the specified number of characters.
+http://www.w3schools.com/js/js_obj_string.asp : substring() Returns the characters in a string between two indexes into the string
+http://www.w3schools.com/js/js_obj_string.asp : toLocaleLowerCase() The characters within a string are converted to lower case while respecting the current locale.
+http://www.w3schools.com/js/js_obj_string.asp : toLocaleUpperCase() The characters within a string are converted to upper case while respecting the current locale.
+http://www.w3schools.com/js/js_obj_string.asp : toLowerCase() Returns the calling string value converted to lower case.
+http://www.w3schools.com/js/js_obj_string.asp : toString()  Returns a string representing the specified object.
+http://www.w3schools.com/js/js_obj_string.asp : toUpperCase() Returns the calling string value converted to uppercase.
+http://www.w3schools.com/js/js_obj_string.asp : valueOf() Returns the primitive value of the specified object.
+http://www.w3schools.com/js/js_obj_array.asp : concat()  Returns a new array comprised of this array joined with other array(s) and/or value(s).
+http://www.w3schools.com/js/js_obj_array.asp : every() Returns true if every element in this array satisfies the provided testing function.
+http://www.w3schools.com/js/js_obj_array.asp : filter()  Creates a new array with all of the elements of this array for which the provided filtering function returns true.
+http://www.w3schools.com/js/js_obj_array.asp : forEach() Calls a function for each element in the array
+http://www.w3schools.com/js/js_obj_array.asp : indexOf() Returns the first (least) index of an element within the array equal to the specified value, or -1 if none is found.
+http://www.w3schools.com/js/js_obj_array.asp : join()  Joins all elements of an array into a string
+http://www.w3schools.com/js/js_obj_array.asp : lastIndexOf() Returns the last (greatest) index of an element within the array equal to the specified value, or -1 if none is found.
+http://www.w3schools.com/js/js_obj_array.asp : map() Creates a new array with the results of calling a provided function on every element in this array
+http://www.w3schools.com/js/js_obj_array.asp : pop() Removes the last element from an array and returns that element.
+http://www.w3schools.com/js/js_obj_array.asp : push()  Adds one or more elements to the end of an array and returns the new length of the array
+http://www.w3schools.com/js/js_obj_array.asp : reduce()  Apply a function simultaneously against two values of the array (from left-to-right) as to reduce it to a single value.
+http://www.w3schools.com/js/js_obj_array.asp : reduceRight() Apply a function simultaneously against two values of the array (from right-to-left) as to reduce it to a single value.
+http://www.w3schools.com/js/js_obj_array.asp : reverse() Reverses the order of the elements of an array -- the first becomes the last, and the last becomes the first.
+http://www.w3schools.com/js/js_obj_array.asp : shift() Removes the first element from an array and returns that element.
+http://www.w3schools.com/js/js_obj_array.asp : slice() Extracts a section of an array and returns a new array
+http://www.w3schools.com/js/js_obj_array.asp : some()  Returns true if at least one element in this array satisfies the provided testing function.
+http://www.w3schools.com/js/js_obj_array.asp : toSource()  Represents the source code of an object
+http://www.w3schools.com/js/js_obj_array.asp : sort()  Sorts the elements of an array
+http://www.w3schools.com/js/js_obj_array.asp : splice()  Adds and/or removes elements from an array
+http://www.w3schools.com/js/js_obj_array.asp : toString()  Returns a string representing the array and its elements.
+http://www.w3schools.com/js/js_obj_array.asp : unshift() Adds one or more elements to the front of an array and returns the new length of the array
+http://www.w3schools.com/js/js_obj_date.asp : Date()  Returns today's date and time
+http://www.w3schools.com/js/js_obj_date.asp : getDate() Returns the day of the month for the specified date according to local time.
+http://www.w3schools.com/js/js_obj_date.asp : getDay()  Returns the day of the week for the specified date according to local time.
+http://www.w3schools.com/js/js_obj_date.asp : getFullYear() Returns the year of the specified date according to local time.
+http://www.w3schools.com/js/js_obj_date.asp : getHours()  Returns the hour in the specified date according to local time.
+http://www.w3schools.com/js/js_obj_date.asp : getMilliseconds() Returns the milliseconds in the specified date according to local time.
+http://www.w3schools.com/js/js_obj_date.asp : getMinutes()  Returns the minutes in the specified date according to local time.
+http://www.w3schools.com/js/js_obj_date.asp : getMonth()  Returns the month in the specified date according to local time.
+http://www.w3schools.com/js/js_obj_date.asp : getSeconds()  Returns the seconds in the specified date according to local time.
+http://www.w3schools.com/js/js_obj_date.asp : getTime() Returns the numeric value of the specified date as the number of milliseconds since January 1, 1970, 00:00:00 UTC.
+http://www.w3schools.com/js/js_obj_date.asp : getTimezoneOffset() Returns the time-zone offset in minutes for the current locale.
+http://www.w3schools.com/js/js_obj_date.asp : getUTCDate()  Returns the day (date) of the month in the specified date according to universal time.
+http://www.w3schools.com/js/js_obj_date.asp : getUTCDay() Returns the day of the week in the specified date according to universal time.
+http://www.w3schools.com/js/js_obj_date.asp : getUTCFullYear()  Returns the year in the specified date according to universal time.
+http://www.w3schools.com/js/js_obj_date.asp : getUTCHours() Returns the hours in the specified date according to universal time.
+http://www.w3schools.com/js/js_obj_date.asp : getUTCMilliseconds()  Returns the milliseconds in the specified date according to universal time.
+http://www.w3schools.com/js/js_obj_date.asp : getUTCMinutes() Returns the minutes in the specified date according to universal time.
+http://www.w3schools.com/js/js_obj_date.asp : getUTCMonth() Returns the month in the specified date according to universal time.
+http://www.w3schools.com/js/js_obj_date.asp : getUTCSeconds() Returns the seconds in the specified date according to universal time.
+http://www.w3schools.com/js/js_obj_date.asp : getYear() Deprecated - Returns the year in the specified date according to local time. Use getFullYear instead.
+http://www.w3schools.com/js/js_obj_date.asp : setDate() Sets the day of the month for a specified date according to local time.
+http://www.w3schools.com/js/js_obj_date.asp : setFullYear() Sets the full year for a specified date according to local time.
+http://www.w3schools.com/js/js_obj_date.asp : setHours()  Sets the hours for a specified date according to local time.
+http://www.w3schools.com/js/js_obj_date.asp : setMilliseconds() Sets the milliseconds for a specified date according to local time.
+http://www.w3schools.com/js/js_obj_date.asp : setMinutes()  Sets the minutes for a specified date according to local time.
+http://www.w3schools.com/js/js_obj_date.asp : setMonth()  Sets the month for a specified date according to local time.
+http://www.w3schools.com/js/js_obj_date.asp : setSeconds()  Sets the seconds for a specified date according to local time.
+http://www.w3schools.com/js/js_obj_date.asp : setTime() Sets the Date object to the time represented by a number of milliseconds since January 1, 1970, 00:00:00 UTC.
+http://www.w3schools.com/js/js_obj_date.asp : setUTCDate()  Sets the day of the month for a specified date according to universal time.
+http://www.w3schools.com/js/js_obj_date.asp : setUTCFullYear()  Sets the full year for a specified date according to universal time.
+http://www.w3schools.com/js/js_obj_date.asp : setUTCHours() Sets the hour for a specified date according to universal time.
+http://www.w3schools.com/js/js_obj_date.asp : setUTCMilliseconds()  Sets the milliseconds for a specified date according to universal time.
+http://www.w3schools.com/js/js_obj_date.asp : setUTCMinutes() Sets the minutes for a specified date according to universal time.
+http://www.w3schools.com/js/js_obj_date.asp : setUTCMonth() Sets the month for a specified date according to universal time.
+http://www.w3schools.com/js/js_obj_date.asp : setUTCSeconds() Sets the seconds for a specified date according to universal time.
+http://www.w3schools.com/js/js_obj_date.asp : setYear() Deprecated - Sets the year for a specified date according to local time. Use setFullYear instead.
+http://www.w3schools.com/js/js_obj_date.asp : toDateString()  Returns the "date" portion of the Date as a human-readable string
+http://www.w3schools.com/js/js_obj_date.asp : toGMTString() Deprecated - Converts a date to a string, using the Internet GMT conventions. Use toUTCString instead.
+http://www.w3schools.com/js/js_obj_date.asp : toLocaleDateString()  Returns the "date" portion of the Date as a string, using the current locale's conventions.
+http://www.w3schools.com/js/js_obj_date.asp : toLocaleFormat()  Converts a date to a string, using a format string
+http://www.w3schools.com/js/js_obj_date.asp : toLocaleString()  Converts a date to a string, using the current locale's conventions.
+http://www.w3schools.com/js/js_obj_date.asp : toLocaleTimeString()  Returns the "time" portion of the Date as a string, using the current locale's conventions.
+http://www.w3schools.com/js/js_obj_date.asp : toSource()  Returns a string representing the source for an equivalent Date object; you can use this value to create a new object.
+http://www.w3schools.com/js/js_obj_date.asp : toString()  Returns a string representing the specified Date object.
+http://www.w3schools.com/js/js_obj_date.asp : toTimeString()  Returns the "time" portion of the Date as a human-readable string
+http://www.w3schools.com/js/js_obj_date.asp : toUTCString() Converts a date to a string, using the universal time convention.
+http://www.w3schools.com/js/js_obj_date.asp : valueOf() Returns the primitive value of a Date object.
+http://www.w3schools.com/js/js_obj_date.asp : parse( ) Parses a string representation of a date and time and returns the internal millisecond representation of that date
+http://www.w3schools.com/js/js_obj_date.asp : UTC( ) Returns the millisecond representation of the specified UTC date and time.
+http://www.w3schools.com/js/js_obj_math.asp : abs() Returns the absolute value of a number.
+http://www.w3schools.com/js/js_obj_math.asp : acos()  Returns the arccosine (in radians) of a number.
+http://www.w3schools.com/js/js_obj_math.asp : asin()  Returns the arcsine (in radians) of a number.
+http://www.w3schools.com/js/js_obj_math.asp : atan()  Returns the arctangent (in radians) of a number.
+http://www.w3schools.com/js/js_obj_math.asp : atan2() Returns the arctangent of the quotient of its arguments.
+http://www.w3schools.com/js/js_obj_math.asp : ceil()  Returns the smallest integer greater than or equal to a number.
+http://www.w3schools.com/js/js_obj_math.asp : cos() Returns the cosine of a number.
+http://www.w3schools.com/js/js_obj_math.asp : exp() Returns EN, where N is the argument, and E is Euler's constant, the base of the natural logarithm.
+http://www.w3schools.com/js/js_obj_math.asp : floor() Returns the largest integer less than or equal to a number.
+http://www.w3schools.com/js/js_obj_math.asp : log() Returns the natural logarithm (base E) of a number.
+http://www.w3schools.com/js/js_obj_math.asp : max() Returns the largest of zero or more numbers.
+http://www.w3schools.com/js/js_obj_math.asp : min() Returns the smallest of zero or more numbers.
+http://www.w3schools.com/js/js_obj_math.asp : pow() Returns base to the exponent power, that is, base exponent.
+http://www.w3schools.com/js/js_obj_math.asp : random()  Returns a pseudo-random number between 0 and 1.
+http://www.w3schools.com/js/js_obj_math.asp : round() Returns the value of a number rounded to the nearest integer.
+http://www.w3schools.com/js/js_obj_math.asp : sin() Returns the sine of a number.
+http://www.w3schools.com/js/js_obj_math.asp : sqrt()  Returns the square root of a number.
+http://www.w3schools.com/js/js_obj_math.asp : tan() Returns the tangent of a number.
+http://www.w3schools.com/js/js_obj_math.asp : toSource()  Returns the string "Math".
+http://www.w3schools.com/js/js_obj_regexp.asp : exec()  Executes a search for a match in its string parameter.
+http://www.w3schools.com/js/js_obj_regexp.asp : test()  Tests for a match in its string parameter.
+http://www.w3schools.com/js/js_obj_regexp.asp : toSource()  Returns an object literal representing the specified object; you can use this value to create a new object.
+http://www.w3schools.com/js/js_obj_regexp.asp : toString()  Returns a string representing the specified object.

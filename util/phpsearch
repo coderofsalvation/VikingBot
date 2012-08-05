@@ -1,0 +1,16 @@
+#!/bin/bash
+# Absolute path to this script, e.g. /home/user/bin/foo.sh
+SELF_ABS=`readlink -f $0`               
+# Absolute path this script is in, thus /home/user/bin
+SELF_PATH=`dirname $SELF_ABS`           
+SELF=`basename $SELF_ABS`
+result=""
+arg="$1"
+
+printit(){
+  echo "$result" | while read line; do echo "[phpsearch] http://www.php.net/$arg : $line"; done
+}
+
+result=$(cat "$SELF_PATH/phpsearch.txt" | grep "(" | grep "$1" | head -n3)
+[[ $? == 0 ]] && printit || printf "wtf!"
+

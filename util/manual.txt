@@ -1,0 +1,2 @@
+!foo somechannelguide: 'How to do foo' : http://foo.com/docs/foo.html#foo 
+!bar somechannelguide: 'How to do bar' : http://foo.com/docs/foo.html#bar 
