@@ -53,6 +53,23 @@ upgradePlugin:
 
 
 
+========== TEXT FORMATTING  ==========
+If you wish, you can format text the bot sends to a channel/user, via your plugins.
+Use any of the following codes to apply the relevant text color or format. The text will
+keep the given format until either end of string, or the {reset} tag.
+
+Available colors:
+{white}, {black}, {blue}, {green}, {red}, {darkRed}, {purple}, 
+{orange}, {yellow}, {lime}, {teal}, {cyan}, {lightBlue}, {pink}, {grey} & {lightGrey}
+
+Other tags:
+{reset}, {bold} & {underline}
+
+Example:
+"{bold}i am bold and {red}red{reset}, but now i am normal"
+
+PS: Different IRC-clients may display colors differently, some servers even deny color use!
+
 ========== BUGS/PROBLEMS? ==========
 Feel free to contact me via IRC on EfNet/Freenode/Undernet (Ueland)
 or via e-mail: tor.henning AT gmail.com.

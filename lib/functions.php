@@ -32,8 +32,38 @@ function getNick($in) {
  */
 function sendMessage($socket, $channel, $msg) {
 	if(strlen($msg) > 2) { //Avoid sending empty lines to server, since all data should contain a line break, 2 chars is minimum
+		$msg = prettify($msg);
 		sendData($socket, "PRIVMSG {$channel} :{$msg}");
 	}
+}
+
+/**
+ * Converts color / formatting codes to IRC-syntax
+ *
+ */
+function prettify($msg) {
+	$msg = str_replace("{reset}", "\017", $msg);
+        $msg = str_replace("{white}", "\0030", $msg);
+        $msg = str_replace("{black}", "\0031", $msg);
+        $msg = str_replace("{blue}", "\0032", $msg);
+        $msg = str_replace("{green}", "\0033", $msg);
+        $msg = str_replace("{red}", "\0034", $msg);
+        $msg = str_replace("{darkRed}", "\0035", $msg);
+        $msg = str_replace("{purple}", "\0036", $msg);
+        $msg = str_replace("{orange}", "\0037", $msg);
+        $msg = str_replace("{yellow}", "\0038", $msg);
+        $msg = str_replace("{lime}", "\0039", $msg);
+        $msg = str_replace("{teal}", "\00310", $msg);
+        $msg = str_replace("{cyan}", "\00311", $msg);
+        $msg = str_replace("{lightBlue}", "\00312", $msg);
+        $msg = str_replace("{pink}", "\00313", $msg);
+        $msg = str_replace("{grey}", "\00314", $msg);
+        $msg = str_replace("{lightGrey}", "\00315", $msg);
+
+	$msg = str_replace("{bold}", "\002", $msg);
+        $msg = str_replace("{underline}", "\017", $msg);
+        $msg = str_replace("{bold}", "\002", $msg);
+	return $msg;
 }
 
 /**
