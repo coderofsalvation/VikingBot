@@ -50,7 +50,9 @@ rssPlugin:
 
 upgradePlugin:
 	- Plugin that upgrades the bot via git pull.
-
+	
+autoOpPlugin:
+	- Plugin that gives +o to everyone or to certain nicks on channel join.
 
 
 ========== TEXT FORMATTING  ==========
