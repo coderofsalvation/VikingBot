@@ -30,15 +30,12 @@ $config['plugins']['rssReader'] = array(
 $config['plugins']['fileReader'] = array(
         'channel'       => '#vikingbot',
 );
-<<<<<<< HEAD
-=======
 
 //Auto Op
 $config['plugins']['autoOp'] = array(
-        'mode'    =>  '1',              // autop mode, 0 = disabled, 1 = only configured users, 2 = autoop everyone
+        'mode'    =>  '0',              // autop mode, 0 = disabled, 1 = only configured users, 2 = autoop everyone
         'channel' =>  array(
                '#channel1'    => array('nick1','nick2','nick3','nick4','nick5','nick6','nick7','nick8'),
                '#channel2'    => array('ueland','ernini')
         ),
 );
->>>>>>> proj1/master

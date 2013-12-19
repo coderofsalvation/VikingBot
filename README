@@ -50,14 +50,9 @@ rssPlugin:
 
 upgradePlugin:
 	- Plugin that upgrades the bot via git pull.
-<<<<<<< HEAD
-
-=======
 	
 autoOpPlugin:
 	- Plugin that gives +o to everyone or to certain nicks on channel join.
->>>>>>> proj1/master
-
 
 ========== TEXT FORMATTING  ==========
 If you wish, you can format text the bot sends to a channel/user, via your plugins.
