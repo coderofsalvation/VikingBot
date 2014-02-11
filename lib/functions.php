@@ -118,7 +118,7 @@ function logMsg($msg) {
 	if(!stringEndsWith($msg, "\n")) {
 		$msg .= "\n";
 	}		
-	echo "[".date("t.M.y H:i:s")."] {$msg}";
+	echo "[".date("d.M.y H:i:s")."] {$msg}";
 }
 
 /**
