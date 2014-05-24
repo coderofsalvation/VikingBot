@@ -1,76 +1,18 @@
-========== INSTALLING ==========
-1) copy config.dist.php to config.php
-2) update config.php with correct settings
-3) run it, sh start.sh
-4) check log outout in logs/vikingbot.log
+<a href="http://cryptoglance.info/" rel="external">http://cryptoglance.info</a>
 
-========== SUPPORTED COMMANDS ==========
-The following commands are supported out of the box
-(aka they are not controlled via plugins):
+----
 
-!quit [password]	-	Shuts down the bot
-!restart [password]	-	Restarts the bot
+<img src="images/cryptoGlance-thread-header.png" alt="cryptoGlance" />
 
-The following commands are supported via the plugins that 
-is installed per default:
+### What is this?
 
-!botlog [password] [rows]	-	The bot responds with the [rows] last rows of the bot log file (default: 10 rows)
-!memory				-	The bot responds with memory usage statistics
-!ping				-	The bot responds with a pong to say that it is still alive
-!uptime				-	The bot responds with the bots uptime
-!upgrade [password]		-	The bot will attempt to upgrade itself to the latest version via GIT pull
-!op nick channel [password]	-	The bot attempts to give *user* on *channel OP status
+We have forked <a href="https://github.com/Ueland/VikingBot" rel="external">Ueland/VikingBot</a> for our own personal use on our IRC Channel <a href="http://webchat.freenode.net/?channels=cryptoglance" rel="external">#cryptoGlance on freenode.net</a>.
 
-========== INSTALLED PLUGINS ========== 
-The following plugins are installed per default:
+### What does it do?
 
-fileReaderPlugin:
-	- Outputs data from db/fileReaderOutput.db to channel specified in the plugin, 
-	useful for GIT/SVN commit hooks or anything other that should push data to a 
-	channel
+As this is a freshly forked repo, this is 100% identical to <a href="https://github.com/Ueland/VikingBot" rel="external">Ueland/VikingBot</a>. Features can be found <a href="https://github.com/cryptoGlance/cryptoGlance-irc-bot/blob/master/README-VikingBot">here</a>.
 
-botLogPlugin:
-	- Plugin that responds to a "!log" with the last N rows of the bot`s log file
+### We owe thanks to the following:
 
-memoryPlugin:
-	- Plugin that responds to a "!memory" with information about memory usage
-
-opPlugin:
-	- Plugin that respons to a "!op ..." by oping a user if the bot has op itsefl
-
-pingPlugin:
-	- Plugin that responds to a "!ping" with a "pong".
-
-uptimePlugin:
-	- Plugin that responds to a "!uptime" with the bots uptime
-
-rssPlugin:
-	- Plugin that pulls RSS feeds at specified intervals and outputs new 
-	  RSS elements to a specified channel. 
-
-upgradePlugin:
-	- Plugin that upgrades the bot via git pull.
-	
-autoOpPlugin:
-	- Plugin that gives +o to everyone or to certain nicks on channel join.
-
-========== TEXT FORMATTING  ==========
-If you wish, you can format text the bot sends to a channel/user, via your plugins.
-Use any of the following codes to apply the relevant text color or format. The text will
-keep the given format until either end of string, or the {reset} tag.
-
-Available colors:
-{white}, {black}, {blue}, {green}, {red}, {darkRed}, {purple}, 
-{orange}, {yellow}, {lime}, {teal}, {cyan}, {lightBlue}, {pink}, {grey} & {lightGrey}
-
-Other tags:
-{reset}, {bold} & {underline}
-
-Example:
-"{bold}i am bold and {red}red{reset}, but now i am normal"
-
-PS: Different IRC-clients may display colors differently, some servers even deny color use!
-
-========== BUGS/PROBLEMS? ==========
-Feel free to contact me via IRC on EfNet/Freenode/Undernet (Ueland)
-or via e-mail: tor.henning AT gmail.com.
+- [Ueland/VikingBot](https://github.com/Ueland/VikingBot)
+- [LiteSaber](https://coinhuntr.com/) (For referring us to VikingBot)
