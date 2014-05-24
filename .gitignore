@@ -1,2 +1,2 @@
-config.php
-logs/vikingbot.log
+logs/*
+db/*

@@ -1,1 +1,1 @@
-php VikingBot.php > logs/vikingbot.log 2>&1 &
+php bot.php > logs/bot.log 2>&1 &

@@ -1,6 +1,7 @@
 <?php
 
 require("config.php");
+require("plugins.php");
 require("lib/functions.php");
 require("lib/pluginInterface.php");
 
@@ -15,7 +16,7 @@ if(!is_file("config.php")) {
 
 set_error_handler("errorHandler");
 
-class VikingBot {
+class Bot {
 
 	var $socket;
 	var $inChannel = false;
@@ -194,7 +195,7 @@ class VikingBot {
 	
 	function prepareShutdown($msg) {
 		if(strlen($msg) == 0) {
-			$msg = "VikingBot - https://github.com/Ueland/VikingBot";
+			$msg = "cryptoGlance - http://cryptoglance.info";
 		}
                 sendData($this->socket, "QUIT :{$msg}");
                 foreach($this->plugins as $plugin) {
@@ -253,4 +254,4 @@ class VikingBot {
 }
 
 //Start the bot
-$bot = new VikingBot($config);
+$bot = new Bot($config);

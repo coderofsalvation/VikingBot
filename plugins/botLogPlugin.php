@@ -45,7 +45,7 @@ class botLogPlugin implements pluginInterface {
 
 				//Password auth ok, display log data
 				sendMessage($this->socket, $channel, "{$from}: Last {$limit} entries from bot log:");
-				$logdata = file('logs/vikingbot.log');
+				$logdata = file('logs/bot.log');
 				$rows = count($logdata);
 				for($i=$rows - $limit; $i<$rows; $i++){
 					sendMessage($this->socket, $channel, "{$logdata[$i]}");
